@@ -21,9 +21,9 @@ public class Rasterization {
     public static void drawFilledCircleSector(final GraphicsContext gc, final int width, final int height) {
         int centerX = width / 2;
         int centerY = height / 2;
-        int radius = 100;
-        int startAngle = 0;
-        int endAngle = 360;
+        int radius = 200;
+        int startAngle = 40;
+        int endAngle = 150;
 
         // Цвета для интерполяции
         Color startColor = Color.GREEN;
@@ -33,8 +33,11 @@ public class Rasterization {
         double startAngleRad = Math.toRadians(startAngle);
         double endAngleRad = Math.toRadians(endAngle);
 
+        // Увеличиваем количество отрисовываемых точек
+        int numPoints = (int) (radius * (endAngleRad - startAngleRad) / 1.0) + 2000;
+
         // Вычисляем шаг изменения угла
-        double angleStep = 1.0 / radius;
+        double angleStep = (endAngleRad - startAngleRad) / numPoints;
 
         // Рисуем сектор
         for (double angle = startAngleRad; angle <= endAngleRad; angle += angleStep) {
@@ -48,8 +51,9 @@ public class Rasterization {
             // Устанавливаем цвет пикселя
             gc.setStroke(interpolatedColor);
             gc.strokeLine(centerX, centerY, x, y);
+
+            }
         }
-    }
 
     public static Color interpolateColor(Color startColor, Color endColor, double t) {
         double red = startColor.getRed() + t * (endColor.getRed() - startColor.getRed());

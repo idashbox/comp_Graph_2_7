@@ -20,7 +20,7 @@ public class RasterizationController {
         anchorPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> canvas.setWidth(newValue.doubleValue()));
         anchorPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> canvas.setHeight(newValue.doubleValue()));
 
-        Rasterization.drawFilledCircleSector(canvas.getGraphicsContext2D(), 200, 400);
+        Rasterization.drawFilledCircleSector(canvas.getGraphicsContext2D(), 800, 600);
 //        Rasterization.drawRectangle(canvas.getGraphicsContext2D(), 250, 250, 50, 200, Color.AQUA);
     }
 
